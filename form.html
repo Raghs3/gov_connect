@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GovConnect - Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, white, #d1f5d3);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to right, orange, white, green);
+      padding: 10px 20px;
+    }
+
+    header .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    header a {
+      text-decoration: none;
+      color: black;
+      margin-left: 20px;
+    }
+
+    main {
+      text-align: center;
+      padding: 20px;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      justify-content: center;
+    }
+
+    form select {
+      padding: 10px;
+      font-size: 16px;
+      width: 100%;
+    }
+
+    .btn {
+      grid-column: span 3;
+      margin-top: 10px;
+      padding: 10px;
+      background: orange;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">GovConnect</div>
+    <div>
+      <a href="#">Sign In</a>
+      <a href="home.html">Home</a>
+    </div>
+  </header>
+  <main>
+    <form>
+      <select>
+        <option>Gender</option>
+      </select>
+      <select>
+        <option>Age</option>
+      </select>
+      <select>
+        <option>Income</option>
+      </select>
+      <select>
+        <option>Occupation</option>
+      </select>
+      <select>
+        <option>Area</option>
+      </select>
+      <select>
+        <option>Category</option>
+      </select>
+      <select>
+        <option>State</option>
+      </select>
+      <select>
+        <option>District</option>
+      </select>
+      <a href="details.html" class="btn">Enter</a>
+    </form>
+  </main>
+</body>
+</html>
