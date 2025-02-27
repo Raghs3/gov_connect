@@ -86,15 +86,19 @@
         .banner {
             position: relative;
             width: 100%;
-            height: 80vh; /* Changed to viewport height */
+            height: 60vh; /* Reduced from 80vh to 60vh */
+            max-height: 500px; /* Added maximum height */
             overflow: hidden;
-            margin: 0; /* Removed top/bottom margin */
+            margin: 20px 0; /* Added margin for spacing */
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 12px; /* Added rounded corners */
         }
         .slide {
             width: 100%;
             height: 100%;
             position: relative;
+            margin: 0 auto; /* Center the slide */
+            max-width: 1200px; /* Maximum width for larger screens */
         }
         .slide img {
             position: absolute;
@@ -103,6 +107,7 @@
             object-fit: cover; /* Ensures image covers area without distortion */
             opacity: 0;
             transition: opacity 0.8s ease-in-out;
+            border-radius: 12px; /* Match banner border radius */
         }
         .slide img.active {
             opacity: 1;
@@ -119,6 +124,7 @@
                 rgba(0, 0, 0, 0.1)
             );
             pointer-events: none;
+            border-radius: 12px; /* Match banner border radius */
         }
         .dots {
             position: absolute;
@@ -158,14 +164,41 @@
             width: 30%;
             margin: 10px;
             background: white;
-            padding: 10px;
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+        .scheme:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            border-color: #FF9933;
         }
         .scheme img {
             width: 50px;
             height: 50px;
+            transition: all 0.3s ease;
         }
+        .scheme:hover img {
+            transform: scale(1.1);
+        }
+        .scheme p {
+            margin-top: 15px;
+            color: #2D3748;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .scheme:hover p {
+            color: #FF9933;
+        }
+        .scheme:nth-child(2) { animation-delay: 0.1s; }
+        .scheme:nth-child(3) { animation-delay: 0.2s; }
+        .scheme:nth-child(4) { animation-delay: 0.3s; }
+        .scheme:nth-child(5) { animation-delay: 0.4s; }
+        .scheme:nth-child(6) { animation-delay: 0.5s; }
         .check-scheme {
             text-align: center;
             margin: 20px;
@@ -178,6 +211,23 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+        }
+        /* Add container for banner to control width */
+        .banner-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Add animation for initial load */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -200,16 +250,20 @@
         </div>
     </header>
     <main>
-        <div class="banner">
-            <div class="slide">
-                <img src="images/mom son.jpg" alt="Mother and Child" class="active">
-                <img src="images/farmer.png" alt="Farmer with Phone">
-                <img src="images/educate girls.jpg" alt="Children Learning">
-            </div>
-            <div class="dots">
-                <div class="dot active"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
+        <div class="banner-container">
+            <div class="banner">
+                <div class="slide">
+                    <img src="GovConnect.png" alt="Home" class="active">
+                    <img src="images/mom son.jpg" alt="Mother and Child">
+                    <img src="images/farmer.png" alt="Farmer with Phone">
+                    <img src="images/educate girls.jpg" alt="Children Learning">
+                </div>
+                <div class="dots">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
             </div>
         </div>
         <div class="schemes">
@@ -253,7 +307,7 @@
         });
 
         // Start automatic slideshow
-        setInterval(nextSlide, 3000);
+        setInterval(nextSlide, 4000);
     </script>
 </body>
 </html>
