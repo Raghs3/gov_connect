@@ -48,6 +48,11 @@
       background: white;
       margin: 10px 0;
       border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    .list .item.active {
+      background: #d1f5d3;
     }
 
     .details {
@@ -69,15 +74,15 @@
   </header>
   <main>
     <div class="list">
-      <div class="item">
+      <div class="item" data-scheme="nsap">
         <span>NSAP - Indira Gandhi National Old Age Pension Scheme</span>
         <a href="#">&rarr;</a>
       </div>
-      <div class="item">
+      <div class="item" data-scheme="widow-pension">
         <span>Indira Gandhi National Widow Pension Scheme</span>
         <a href="#">&rarr;</a>
       </div>
-      <div class="item">
+      <div class="item" data-scheme="mahila-samman">
         <span>Mahila Samman savings Certificate</span>
         <a href="#">&rarr;</a>
       </div>
@@ -89,5 +94,39 @@
       <p><strong>Place to Apply</strong> Click on a scheme to see this info</p>
     </div>
   </main>
+  <script>
+    const schemes = {
+      'nsap': {
+        title: 'NSAP - Indira Gandhi National Old Age Pension Scheme',
+        details: 'Monthly pension for elderly citizens above 60 years.',
+        benefits: '₹200-500 monthly pension depending on age bracket',
+        documents: 'Age proof, Income certificate, Aadhar card, Bank account details',
+        application: 'Local Gram Panchayat office or Municipal Corporation'
+      },
+      // Add more schemes here
+    };
+
+    document.querySelectorAll('.item').forEach(item => {
+      item.addEventListener('click', function() {
+        const schemeKey = this.getAttribute('data-scheme');
+        const scheme = schemes[schemeKey];
+        const details = document.querySelector('.details');
+        details.innerHTML = `
+          <h3>${scheme.title}</h3>
+          <div class="detail-section">
+            <p><strong>Details:</strong> ${scheme.details}</p>
+            <p><strong>Benefits:</strong> ${scheme.benefits}</p>
+            <p><strong>Documents Required:</strong> ${scheme.documents}</p>
+            <p><strong>Where to Apply:</strong> ${scheme.application}</p>
+            <button class="apply-btn">Apply Now</button>
+          </div>
+        `;
+        
+        // Highlight selected scheme
+        document.querySelectorAll('.item').forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
