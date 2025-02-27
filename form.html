@@ -23,33 +23,79 @@
     }
 
     header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       background: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       padding: 15px 40px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border-top: 4px solid #FF9933;
+      border-bottom: 4px solid #138808;
     }
 
-    header .logo {
-      color: var(--primary-color);
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .site-title {
       font-size: 24px;
-      font-weight: 600;
+      font-weight: bold;
+      color: #333;
     }
 
-    header a {
-      color: var(--primary-color);
+    .search-box {
+      flex: 1;
+      max-width: 500px;
+      margin: 0 40px;
+      position: relative;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px 20px;
+      border: 2px solid #e2e8f0;
+      border-radius: 25px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #FF9933;
+      box-shadow: 0 0 0 3px rgba(255, 153, 51, 0.1);
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    nav a {
+      color: #333;
       text-decoration: none;
+      font-weight: 600;
       padding: 8px 16px;
-      border-radius: 4px;
-      transition: background-color 0.3s;
+      border-radius: 20px;
+      transition: all 0.3s ease;
     }
 
-    header a:hover {
-      background-color: var(--border-color);
+    nav a:hover {
+      background-color: #f7fafc;
+      color: #FF9933;
     }
 
-    main {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 20px;
+    nav a.sign-in {
+      background-color: #FF9933;
+      color: white;
+    }
+
+    nav a.sign-in:hover {
+      background-color: #e67300;
+      color: white;
+      transform: translateY(-1px);
     }
 
     form {
@@ -138,12 +184,17 @@
 </head>
 <body>
   <header>
-    <img src="images/logo.png" width="60" height="60" alt="GovConnect">
-    <div class="logo">GovConnect</div>
-    <div>
-      <a href="#">Sign In</a>
-      <a href="index.html">Home</a>
+    <div class="logo-section">
+      <img src="logo.png" width="60" height="60" alt="GovConnect">
+      <div class="site-title">GovConnect</div>
     </div>
+    <div class="search-box">
+      <input type="text" placeholder="Search...">
+    </div>
+    <nav>
+      <a href="#" class="sign-in">Sign In</a>
+      <a href="index.html">Home</a>
+    </nav>
   </header>
   <main>
     <form id="schemeForm">
