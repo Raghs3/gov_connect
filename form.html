@@ -5,102 +5,263 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GovConnect - Form</title>
   <style>
+    :root {
+      --primary-color: #2c5282;
+      --secondary-color: #4299e1;
+      --accent-color: #f6ad55;
+      --background-color: #f7fafc;
+      --text-color: #2d3748;
+      --border-color: #e2e8f0;
+    }
+
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom, white, #d1f5d3);
+      background: var(--background-color);
+      color: var(--text-color);
     }
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: linear-gradient(to right, orange, white, green);
-      padding: 10px 20px;
+      background: white;
+      padding: 15px 40px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border-top: 4px solid #FF9933;
+      border-bottom: 4px solid #138808;
     }
 
-    header .logo {
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .site-title {
       font-size: 24px;
       font-weight: bold;
+      color: #333;
     }
 
-    header a {
+    .search-box {
+      flex: 1;
+      max-width: 500px;
+      margin: 0 40px;
+      position: relative;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px 20px;
+      border: 2px solid #e2e8f0;
+      border-radius: 25px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #FF9933;
+      box-shadow: 0 0 0 3px rgba(255, 153, 51, 0.1);
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    nav a {
+      color: #333;
       text-decoration: none;
-      color: black;
-      margin-left: 20px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
     }
 
-    main {
-      text-align: center;
-      padding: 20px;
+    nav a:hover {
+      background-color: #f7fafc;
+      color: #FF9933;
+    }
+
+    nav a.sign-in {
+      background-color: #FF9933;
+      color: white;
+    }
+
+    nav a.sign-in:hover {
+      background-color: #e67300;
+      color: white;
+      transform: translateY(-1px);
     }
 
     form {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      justify-content: center;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      max-width: 800px;
+      margin: 0 auto;
     }
 
-    form select {
-      padding: 10px;
-      font-size: 16px;
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    label {
+      color: var(--text-color);
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+
+    select {
       width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background-color: white;
+      transition: all 0.3s;
+      color: var(--text-color);
+      font-size: 1rem;
+    }
+
+    select:focus {
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+      outline: none;
     }
 
     .btn {
-      grid-column: span 3;
-      margin-top: 10px;
-      padding: 10px;
-      background: orange;
+      background: var(--primary-color);
       color: white;
+      padding: 14px 28px;
+      border-radius: 6px;
       border: none;
+      font-weight: 600;
+      font-size: 1rem;
       cursor: pointer;
-      font-size: 16px;
+      transition: all 0.3s;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .btn:hover {
+      background: var(--secondary-color);
+      transform: translateY(-1px);
+    }
+
+    .btn:disabled {
+      background: #cbd5e0;
+      cursor: not-allowed;
+    }
+
+    .error-message {
+      color: #e53e3e;
+      margin-top: 8px;
+      font-size: 0.875rem;
+    }
+
+    /* Loading animation */
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      margin-left: 10px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="images/logo.png" width="60" height="60" alt="GovConnect">
-    <div class="logo">GovConnect</div>
-    <div>
-      <a href="#">Sign In</a>
-      <a href="index.html">Home</a>
+    <div class="logo-section">
+      <img src="logo.png" width="60" height="60" alt="GovConnect">
+      <div class="site-title">GovConnect</div>
     </div>
+    <div class="search-box">
+      <input type="text" placeholder="Search...">
+    </div>
+    <nav>
+      <a href="#" class="sign-in">Sign In</a>
+      <a href="index.html">Home</a>
+    </nav>
   </header>
   <main>
-    <form>
-      <select>
-        <option>Gender</option>
-        <option>Male</option>
-        <option>Female</option>
-      </select>
-      <select>
-        <option>Age</option>
-        <option>Under 18</option>
-        <option>18-62</option>
-        <option>Over 62</option>
-      </select>
-      <select>
-        <option>Income</option>
-        <option>Below 1 lac</option>
-        <option>1-8 lacs</option>
-        <option>8+ lacs</option>
-      </select>
-      <select>
-        <option>Occupation</option>
-        <option>Government Sector</option>
-        <option>Private Sector</option>
-      </select>
-      <select>
-        <option>Region</option>
-        <option>Rural</option>
-        <option>Urban</option>
-      </select>
-      <a href="details.html" class="btn">Enter</a>
+    <form id="schemeForm">
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select id="gender" required>
+          <option value="">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age Group</label>
+        <select id="age" required>
+          <option value="">Select Age</option>
+          <option value="under18">Under 18</option>
+          <option value="adult">18-62</option>
+          <option value="senior">Over 62</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="income">Annual Income</label>
+        <select id="income" required>
+          <option value="">Select Income</option>
+          <option value="low">Below 1 lac</option>
+          <option value="medium">1-8 lacs</option>
+          <option value="high">8+ lacs</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn">Find Eligible Schemes</button>
     </form>
   </main>
+  <script>
+    document.getElementById('schemeForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const gender = document.getElementById('gender').value;
+      const age = document.getElementById('age').value;
+      const income = document.getElementById('income').value;
+    
+      if (!gender || !age || !income) {
+        alert('Please fill all the fields');
+        return;
+      }
+    
+      // Show loading animation
+      const btn = document.querySelector('.btn');
+      const originalText = btn.innerText;
+      btn.innerHTML = 'Searching... <span class="spinner"></span>';
+      btn.disabled = true;
+    
+      // Simulate processing
+      setTimeout(() => {
+        window.location.href = 'details.html';
+      }, 1500);
+    });
+    
+    // Add floating labels animation
+    document.querySelectorAll('select').forEach(select => {
+      select.addEventListener('change', function() {
+        this.classList.add('selected');
+      });
+    });
+  </script>
 </body>
 </html>

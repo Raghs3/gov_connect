@@ -14,35 +14,144 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to right, orange, white, green);
-            padding: 10px 20px;
+            background: white;
+            padding: 15px 40px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-top: 4px solid #FF9933;  /* Indian flag orange */
+            border-bottom: 4px solid #138808;  /* Indian flag green */
+        }
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
         .logo {
-            background-image: url(images/logo.png);
-            background-size: cover;
+            background-image: url("logo.png");
+            background-size:cover;
+            background-repeat: no-repeat;
             height: 50px;
-            width: 5%;
-
+            width: 50px;
+            margin-right: 10px;
+        }
+        .site-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        .search-box {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 40px;
+            position: relative;
         }
         input[type="text"] {
-            flex-grow: 1;
-            margin: 0 20px;
-            padding: 8px;
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #FF9933;
+            box-shadow: 0 0 0 3px rgba(255, 153, 51, 0.1);
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
         }
         nav a {
-            margin: 0 10px;
-            color: white;
+            color: #333;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        nav a:hover {
+            background-color: #f7fafc;
+            color: #FF9933;
+        }
+        nav a.sign-in {
+            background-color: #FF9933;
+            color: white;
+        }
+        nav a.sign-in:hover {
+            background-color: #e67300;
+            color: white;
+            transform: translateY(-1px);
         }
         .banner {
-            display: flex;
-            justify-content: space-around;
-            margin: 20px 0;
+            position: relative;
+            width: 100%;
+            height: 70vh; /* Reduced from 80vh to 60vh */
+            max-height: 500px; /* Added maximum height */
+            overflow: hidden;
+            margin: 20px 0; /* Added margin for spacing */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 12px; /* Added rounded corners */
         }
-        .banner img {
-            width: 30%;
-            border-radius: 10px;
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            margin: 0 auto; /* Center the slide */
+            max-width: 1200px; /* Maximum width for larger screens */
+        }
+        .slide img {
+            position: absolute;
+            width: 100%;
+            height: 140%;
+            object-fit: cover; /* Ensures image covers area without distortion */
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            border-radius: 12px; /* Match banner border radius */
+        }
+        .slide img.active {
+            opacity: 1;
+        }
+        .slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                rgba(0, 0, 0, 0.2),
+                rgba(0, 0, 0, 0.1)
+            );
+            pointer-events: none;
+            border-radius: 12px; /* Match banner border radius */
+        }
+        .dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 1;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .dot:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: scale(1.1);
+        }
+        .dot.active {
+            background: #FF9933;
+            border-color: white;
+            transform: scale(1.2);
         }
         .schemes {
             display: flex;
@@ -55,14 +164,41 @@
             width: 30%;
             margin: 10px;
             background: white;
-            padding: 10px;
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+        .scheme:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            border-color: #FF9933;
         }
         .scheme img {
             width: 50px;
             height: 50px;
+            transition: all 0.3s ease;
         }
+        .scheme:hover img {
+            transform: scale(1.1);
+        }
+        .scheme p {
+            margin-top: 15px;
+            color: #2D3748;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .scheme:hover p {
+            color: #FF9933;
+        }
+        .scheme:nth-child(2) { animation-delay: 0.1s; }
+        .scheme:nth-child(3) { animation-delay: 0.2s; }
+        .scheme:nth-child(4) { animation-delay: 0.3s; }
+        .scheme:nth-child(5) { animation-delay: 0.4s; }
+        .scheme:nth-child(6) { animation-delay: 0.5s; }
         .check-scheme {
             text-align: center;
             margin: 20px;
@@ -76,25 +212,59 @@
             cursor: pointer;
             font-size: 16px;
         }
+        /* Add container for banner to control width */
+        .banner-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Add animation for initial load */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="top-bar">
-            <div class="logo"></div>
-            <input type="text" placeholder="Enter to search here">
+            <div class="logo-section">
+                <div class="logo"></div>
+                <div class="site-title">GovConnect</div>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Search for schemes, services, or information...">
+            </div>
             <nav>
-                <a href="#">Sign In →</a>
-                <a href="#">HOME</a>
+                <a href="index.html">Home</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="#" class="sign-in">Sign In →</a>
             </nav>
         </div>
     </header>
-    
     <main>
-        <div class="banner">
-            <img src="images/mom son.jpg" alt="Mother and Child">
-            <img src="images/farmer.png" alt="Farmer with Phone">
-            <img src="images/educate girls.jpg" alt="Children Learning">
+        <div class="banner-container">
+            <div class="banner">
+                <div class="slide">
+                    <img src="GovConnect.png" alt="Home" class="active">
+                    <img src="images/mom son.jpg" alt="Mother and Child">
+                    <img src="indian-farmer-1610471656527.avif" alt="Farmer with Phone">
+                    <img src="indian-school-children-group-street-udaipr-39407090.webp" alt="Children Learning">
+                </div>
+                <div class="dots">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
         </div>
         <div class="schemes">
             <div class="scheme"><img src="images/home (5).png" alt="Housing"><p>Housing & Shelter</p></div>
@@ -108,5 +278,36 @@
             <a href="form.html"><button>Check your scheme →</button></a>
         </div>
     </main>
+    <script>
+        const slides = document.querySelectorAll('.slide img');
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            // Remove active class from all slides and dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Add active class to current slide and dot
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Add click events to dots
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
+            });
+        });
+
+        // Start automatic slideshow
+        setInterval(nextSlide, 4000);
+    </script>
 </body>
 </html>

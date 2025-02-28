@@ -6,62 +6,161 @@
   <title>GovConnect - Details</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom, white, #d1f5d3);
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+      min-height: 100vh;
     }
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: linear-gradient(to right, orange, white, green);
-      padding: 10px 20px;
+      background: white;
+      padding: 15px 40px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-top: 4px solid #FF9933;
+      border-bottom: 4px solid #138808;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-container img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
     }
 
     header .logo {
       font-size: 24px;
       font-weight: bold;
+      color: #2D3748;
     }
 
     header a {
       text-decoration: none;
-      color: black;
+      color: #4A5568;
       margin-left: 20px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+
+    header a:hover {
+      background: #EDF2F7;
+      color: #FF9933;
     }
 
     main {
+      max-width: 1200px;
+      margin: 40px auto;
       display: flex;
-      justify-content: space-around;
-      padding: 20px;
+      gap: 40px;
+      padding: 0 20px;
     }
 
     .list {
-      width: 40%;
+      flex: 1;
+      max-width: 600px;
     }
 
     .list .item {
       display: flex;
       justify-content: space-between;
-      padding: 10px;
+      align-items: center;
+      padding: 20px;
       background: white;
-      margin: 10px 0;
-      border: 1px solid #ccc;
+      margin: 15px 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .list .item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-color: #FF9933;
+    }
+
+    .list .item.active {
+      background: #FFF5EB;
+      border-color: #FF9933;
+    }
+
+    .list .item span {
+      flex: 1;
+      font-weight: 500;
+      color: #2D3748;
+    }
+
+    .list .item a {
+      color: #FF9933;
+      font-size: 20px;
+      text-decoration: none;
     }
 
     .details {
-      width: 40%;
+      flex: 1;
       background: white;
-      padding: 20px;
-      border-radius: 5px;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    .detail-section {
+      margin-top: 20px;
+    }
+
+    .detail-section p {
+      margin: 15px 0;
+      line-height: 1.6;
+      color: #4A5568;
+    }
+
+    .detail-section strong {
+      color: #2D3748;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .apply-btn {
+      background: #FF9933;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-weight: 600;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .apply-btn:hover {
+      background: #F17722;
+      transform: translateY(-1px);
+    }
+
+    .apply-btn::after {
+      content: '→';
+      font-size: 20px;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="images/logo.png" width="60" height="60" alt="GovConnect">
-    <div class="logo">GovConnect</div>
+    <div class="logo-container">
+      <img src="logo.png" alt="GovConnect">
+      <div class="logo">GovConnect</div>
+    </div>
     <div>
       <a href="#">Sign In</a>
       <a href="index.html">Home</a>
@@ -69,15 +168,15 @@
   </header>
   <main>
     <div class="list">
-      <div class="item">
+      <div class="item" data-scheme="nsap">
         <span>NSAP - Indira Gandhi National Old Age Pension Scheme</span>
         <a href="#">&rarr;</a>
       </div>
-      <div class="item">
+      <div class="item" data-scheme="widow-pension">
         <span>Indira Gandhi National Widow Pension Scheme</span>
         <a href="#">&rarr;</a>
       </div>
-      <div class="item">
+      <div class="item" data-scheme="mahila-samman">
         <span>Mahila Samman savings Certificate</span>
         <a href="#">&rarr;</a>
       </div>
@@ -89,5 +188,39 @@
       <p><strong>Place to Apply</strong> Click on a scheme to see this info</p>
     </div>
   </main>
+  <script>
+    const schemes = {
+      'nsap': {
+        title: 'NSAP - Indira Gandhi National Old Age Pension Scheme',
+        details: 'Monthly pension for elderly citizens above 60 years.',
+        benefits: '₹200-500 monthly pension depending on age bracket',
+        documents: 'Age proof, Income certificate, Aadhar card, Bank account details',
+        application: 'Local Gram Panchayat office or Municipal Corporation'
+      },
+      // Add more schemes here
+    };
+
+    document.querySelectorAll('.item').forEach(item => {
+      item.addEventListener('click', function() {
+        const schemeKey = this.getAttribute('data-scheme');
+        const scheme = schemes[schemeKey];
+        const details = document.querySelector('.details');
+        details.innerHTML = `
+          <h3>${scheme.title}</h3>
+          <div class="detail-section">
+            <p><strong>Details:</strong> ${scheme.details}</p>
+            <p><strong>Benefits:</strong> ${scheme.benefits}</p>
+            <p><strong>Documents Required:</strong> ${scheme.documents}</p>
+            <p><strong>Where to Apply:</strong> ${scheme.application}</p>
+            <button class="apply-btn">Apply Now</button>
+          </div>
+        `;
+        
+        // Highlight selected scheme
+        document.querySelectorAll('.item').forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
