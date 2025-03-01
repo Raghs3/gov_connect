@@ -185,7 +185,11 @@
 <body>
   <header>
     <div class="logo-section">
+<<<<<<< HEAD
+      <img src="images\images\logo.png" width="60" height="60" alt="GovConnect">
+=======
       <img src="logo.png" width="60" height="60" alt="GovConnect">
+>>>>>>> c92c6f2dc23560461f5158c9b227e05edd4def78
       <div class="site-title">GovConnect</div>
     </div>
     <div class="search-box">
@@ -201,18 +205,31 @@
       <div class="form-group">
         <label for="gender">Gender</label>
         <select id="gender" required>
+<<<<<<< HEAD
+          <option value="" disabled selected>Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          
+=======
           <option value="">Select Gender</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
           <option value="other">Other</option>
+>>>>>>> c92c6f2dc23560461f5158c9b227e05edd4def78
         </select>
       </div>
 
       <div class="form-group">
+<<<<<<< HEAD
+        <label for="age" disabled selected>Age Group</label>
+        <select id="age" required>
+          <option value="" disabled selected>Select Age</option>        
+=======
         <label for="age">Age Group</label>
         <select id="age" required>
           <option value="">Select Age</option>
           <option value="under18">Under 18</option>
+>>>>>>> c92c6f2dc23560461f5158c9b227e05edd4def78
           <option value="adult">18-62</option>
           <option value="senior">Over 62</option>
         </select>
@@ -221,10 +238,17 @@
       <div class="form-group">
         <label for="income">Annual Income</label>
         <select id="income" required>
+<<<<<<< HEAD
+          <option value="" disabled selected>Select Income</option>
+          <option value="low">Below 1 lac</option>
+          <option value="medium">1-8 lacs</option>
+          
+=======
           <option value="">Select Income</option>
           <option value="low">Below 1 lac</option>
           <option value="medium">1-8 lacs</option>
           <option value="high">8+ lacs</option>
+>>>>>>> c92c6f2dc23560461f5158c9b227e05edd4def78
         </select>
       </div>
 
@@ -250,9 +274,21 @@
       btn.innerHTML = 'Searching... <span class="spinner"></span>';
       btn.disabled = true;
     
+<<<<<<< HEAD
+
+      const params = new URLSearchParams();
+    params.append('gender', gender);
+    params.append('age', age);
+    params.append('income', income);
+
+      // Simulate processing
+        setTimeout(() => {
+        window.location.href = 'http://localhost/gov_connect_new_3/details.php?' + params.toString();
+=======
       // Simulate processing
       setTimeout(() => {
         window.location.href = 'details.html';
+>>>>>>> c92c6f2dc23560461f5158c9b227e05edd4def78
       }, 1500);
     });
     
