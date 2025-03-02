@@ -185,7 +185,7 @@
 <body>
   <header>
     <div class="logo-section">
-      <img src="logo.png" width="60" height="60" alt="GovConnect">
+      <img src="images\images\logo.png" width="60" height="60" alt="GovConnect">
       <div class="site-title">GovConnect</div>
     </div>
     <div class="search-box">
@@ -201,18 +201,17 @@
       <div class="form-group">
         <label for="gender">Gender</label>
         <select id="gender" required>
-          <option value="">Select Gender</option>
+          <option value="" disabled selected>Select Gender</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
-          <option value="other">Other</option>
+          
         </select>
       </div>
 
       <div class="form-group">
-        <label for="age">Age Group</label>
+        <label for="age" disabled selected>Age Group</label>
         <select id="age" required>
-          <option value="">Select Age</option>
-          <option value="under18">Under 18</option>
+          <option value="" disabled selected>Select Age</option>        
           <option value="adult">18-62</option>
           <option value="senior">Over 62</option>
         </select>
@@ -221,10 +220,10 @@
       <div class="form-group">
         <label for="income">Annual Income</label>
         <select id="income" required>
-          <option value="">Select Income</option>
+          <option value="" disabled selected>Select Income</option>
           <option value="low">Below 1 lac</option>
           <option value="medium">1-8 lacs</option>
-          <option value="high">8+ lacs</option>
+          
         </select>
       </div>
 
@@ -250,9 +249,15 @@
       btn.innerHTML = 'Searching... <span class="spinner"></span>';
       btn.disabled = true;
     
+
+      const params = new URLSearchParams();
+    params.append('gender', gender);
+    params.append('age', age);
+    params.append('income', income);
+
       // Simulate processing
-      setTimeout(() => {
-        window.location.href = 'details.html';
+        setTimeout(() => {
+        window.location.href = 'http://localhost/gov_connect_new_3/details.php?' + params.toString();
       }, 1500);
     });
     
