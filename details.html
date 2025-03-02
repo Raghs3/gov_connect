@@ -158,7 +158,7 @@
 <body>
   <header>
     <div class="logo-container">
-      <img src="images\images\logo.png" alt="GovConnect">
+      <img src="logo.png" alt="GovConnect">
       <div class="logo">GovConnect</div>
     </div>
     <div>
@@ -168,32 +168,59 @@
   </header>
   <main>
     <div class="list">
-        <!-- <span>NSAP - Indira Gandhi National Old Age Pension Scheme</span>
-        <a href="#">&rarr;</a> -->
-        <?php include_once 'connection.php';
-          $gender = isset($_GET['gender']) ? $_GET['gender'] : null;
-          $age = isset($_GET['age']) ? $_GET['age'] : null;
-          $income = isset($_GET['income']) ? $_GET['income'] : null;
-
-          // if($gender=='female' && $age=='senior' && $income=='medium'){
-            $sql = "SELECT id, scheme_name FROM scheme_details WHERE income='$income' AND age='$age' AND gender='$gender';";
-            $result = mysqli_query($conn, $sql);
-            $resultCheck = mysqli_num_rows($result);
-            if ($resultCheck > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo '<div class="item">';
-                    echo '<span>' . htmlspecialchars($row["scheme_name"]) . '</span>';
-                    echo '<a href="http://localhost/gov_connect_new_3/scheme_details.php?id=' . urlencode($row["id"]) . '">→</a>';
-                    echo '</div>';
-                }
-            } else {
-                echo "No schemes found.";
-            }
-          // }
-      ?>
+      <div class="item" data-scheme="nsap">
+        <span>NSAP - Indira Gandhi National Old Age Pension Scheme</span>
+        <a href="#">&rarr;</a>
+      </div>
+      <div class="item" data-scheme="widow-pension">
+        <span>Indira Gandhi National Widow Pension Scheme</span>
+        <a href="#">&rarr;</a>
+      </div>
+      <div class="item" data-scheme="mahila-samman">
+        <span>Mahila Samman savings Certificate</span>
+        <a href="#">&rarr;</a>
+      </div>
     </div>
-
+    <div class="details">
+      <p><strong>Details</strong> Click on a scheme to see this info</p>
+      <p><strong>Benefits</strong> Click on a scheme to see this info</p>
+      <p><strong>Documents Required</strong> Click on a scheme to see this info</p>
+      <p><strong>Place to Apply</strong> Click on a scheme to see this info</p>
+    </div>
   </main>
-    
+  <script>
+    const schemes = {
+      'nsap': {
+        title: 'NSAP - Indira Gandhi National Old Age Pension Scheme',
+        details: 'Monthly pension for elderly citizens above 60 years.',
+        benefits: '₹200-500 monthly pension depending on age bracket',
+        documents: 'Age proof, Income certificate, Aadhar card, Bank account details',
+        application: 'Local Gram Panchayat office or Municipal Corporation'
+      },
+      // Add more schemes here
+    };
+
+    document.querySelectorAll('.item').forEach(item => {
+      item.addEventListener('click', function() {
+        const schemeKey = this.getAttribute('data-scheme');
+        const scheme = schemes[schemeKey];
+        const details = document.querySelector('.details');
+        details.innerHTML = `
+          <h3>${scheme.title}</h3>
+          <div class="detail-section">
+            <p><strong>Details:</strong> ${scheme.details}</p>
+            <p><strong>Benefits:</strong> ${scheme.benefits}</p>
+            <p><strong>Documents Required:</strong> ${scheme.documents}</p>
+            <p><strong>Where to Apply:</strong> ${scheme.application}</p>
+            <button class="apply-btn">Apply Now</button>
+          </div>
+        `;
+        
+        // Highlight selected scheme
+        document.querySelectorAll('.item').forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
