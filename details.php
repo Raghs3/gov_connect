@@ -183,7 +183,7 @@
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo '<div class="item">';
                     echo '<span>' . htmlspecialchars($row["scheme_name"]) . '</span>';
-                    echo '<a href="http://localhost/gov_connect_new_3/scheme_details.php?id=' . urlencode($row["id"]) . '">→</a>';
+                    echo '<a href="http://localhost/gov_connect_new/scheme_details.php?id=' . urlencode($row["id"]) . '">→</a>';
                     echo '</div>';
                 }
             } else {
